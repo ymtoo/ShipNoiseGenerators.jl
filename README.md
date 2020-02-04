@@ -1,6 +1,8 @@
 # ShipNoiseGenerators
 
 [![Build Status](https://travis-ci.org/ymtoo/ShipNoiseGenerators.jl.svg?branch=master)](https://travis-ci.org/ymtoo/ShipNoiseGenerators.jl)
+[![codecov](https://codecov.io/gh/ymtoo/ShipNoiseGenerators.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/ymtoo/ShipNoiseGenerators.jl)
+
 
 This library provides functions to generate
 - [pink noise](https://ccrma.stanford.edu/~jos/sasp/Example_Synthesis_1_F_Noise.html) (`rand`)
