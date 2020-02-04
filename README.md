@@ -9,7 +9,9 @@ This library provides functions to generate
 - ship noise (`rand`)
 
 ## Installation
-
+```julia
+using Pkg; pkg"add https://github.com/ymtoo/ShipNoiseGenerators.jl.git"
+```
 
 ## Usage
 ```julia
