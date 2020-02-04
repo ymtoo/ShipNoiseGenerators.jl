@@ -1,0 +1,17 @@
+name = "ShipNoiseGenerators"
+uuid = "21e35a56-b6cc-484d-9554-180006c34bea"
+authors = ["ymtoo <too_ym86@yahoo.com>"]
+version = "0.1.0"
+
+[deps]
+DSP = "717857b8-e6f2-59f4-9121-6e50c889abd2"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
+[extras]
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["FFTW", "Statistics", "Test"]
