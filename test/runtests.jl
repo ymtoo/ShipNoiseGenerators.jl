@@ -9,7 +9,7 @@ end
 @testset "ShipNoiseGenerators.jl" begin
 
 n = 96000
-fs = 96000.0
+fs = 96000
 g1 = PinkNoiseGenerator(n)
 x = rand(g1)
 p = welch_pgram(x, 1024; fs=fs)
@@ -21,7 +21,7 @@ ypts = 10*log10.(power(p))[2:end]
 
 
 n = 96000
-fs = 96000.0
+fs = 96000
 As = [0.8]
 frequencies = [200.0]
 ϕs = [0.1]

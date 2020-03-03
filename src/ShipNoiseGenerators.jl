@@ -5,15 +5,15 @@ using Distributions, DSP, Random
 export ShipNoiseGenerator, PinkNoiseGenerator
 
 Base.@kwdef struct ShipNoiseGenerator{T}
-     n::Int64 = 96000
-     fs::T = 96000.0
+     n::Int = 96000
+     fs::Int = 96000
      As::AbstractArray{T, 1} = [0.5]
      frequencies::AbstractArray{T, 1} = [500.0]
      ϕs::AbstractArray{T, 1} = [0.0]
 end
 
 Base.@kwdef struct PinkNoiseGenerator
-    n::Int64
+    n::Int
 end
 
 """

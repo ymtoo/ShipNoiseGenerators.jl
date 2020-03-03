@@ -19,7 +19,7 @@ julia> using DSP, ShipNoiseGenerators, Plots
 
 julia> n = 96000
 
-julia> fs = 96000.0
+julia> fs = 96000
 
 julia> g1 = PinkNoiseGenerator(n)
 
@@ -37,7 +37,7 @@ julia> plot!(freq(p)./1000, 10*log10.(1 ./ (freq(p))), xscale=:log10, xlims=(10,
 ```julia
 julia> n = 96000
 
-julia> fs = 96000.0
+julia> fs = 96000
 
 julia> As = [0.8]
 
