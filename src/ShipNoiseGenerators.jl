@@ -1,6 +1,6 @@
 module ShipNoiseGenerators
 
-using Distributions, DSP, Random
+using Distributions, DSP, StaticArrays, Random
 
 export ShipNoiseGenerator, PinkNoiseGenerator
 
@@ -21,12 +21,12 @@ Synthesis of 1/F Noise (Pink Noise) based on https://ccrma.stanford.edu/~jos/sas
 """
 function Random.rand!(rng::AbstractRNG, g::PinkNoiseGenerator)
     n=g.n
-    B = [0.049922035, -0.095993537, 0.050612699, -0.004408786]
-    A = [1.0, -2.494956002, 2.017265875, -0.522189400]
+    B = SVector{4}([0.049922035, -0.095993537, 0.050612699, -0.004408786])
+    A = SVector{4}([1.0, -2.494956002, 2.017265875, -0.522189400])
     nT60 = 1430
     v = randn(n+nT60)
     x = filt(B, A, v)/0.08680587859687908
-    x[nT60+1:end]
+    view(x, nT60+1:length(x))
 end
 
 Base.rand(rng::AbstractRNG, g::PinkNoiseGenerator) = rand!(rng, g)
@@ -34,14 +34,14 @@ Base.rand(rng::AbstractRNG, g::PinkNoiseGenerator) = rand!(rng, g)
 function Random.rand!(rng::AbstractRNG, g::ShipNoiseGenerator)
     n=g.n; fs=g.fs; As=g.As; frequencies=g.frequencies; ϕs=g.ϕs
     x = rand(PinkNoiseGenerator(n=n))
-    t = (1:n)./fs
-    m = zeros(n)
-    for (A, frequency, ϕ) in zip(As, frequencies, ϕs)
+    t = (1:n)/fs
+    m = zero(x)
+    @inbounds for (A, frequency, ϕ) in zip(As, frequencies, ϕs)
         ω = 2π*frequency
         m .+= A.*sin.(ω.*t.+ϕ)
     end
     x .*= 1.0 .+ m
-    x ./ std(x)
+    x / std(x)
 end
 
 Base.rand(rng::AbstractRNG, g::ShipNoiseGenerator) = rand!(rng, g)
